@@ -1,0 +1,1 @@
+# prettierc-cli-action
