@@ -1,0 +1,42 @@
+name: 'Prettier Check'
+author: 'Rutaj Dash'
+description: 'A simple action which runs the Prettier CLI Check'
+inputs:
+  file_pattern:
+    description: 'The file pattern to scan'
+    required: false
+    default: '**/*.js'
+  config_path:
+    description: 'The path to the prettierrc file'
+    required: false
+    default: ''
+  ignore_path:
+    description: 'The path to the prettierignore file'
+    required: false
+    default: './.prettierignore'
+  prettier_version:
+    description: 'The version of prettier to install'
+    required: false
+    default: 'latest'
+
+outputs:
+  prettier_output:
+    description: 'The output from prettier'
+    value: ${{ steps.prettier-run.outputs.prettier-output }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Installing Prettier
+      id: prettier-install
+      shell: bash
+      run: npm install --global prettier@${{ inputs.prettier_version }}
+
+    - name: Running Prettier
+      id: prettier-run
+      shell: bash
+      run: cd $GITHUB_ACTION_PATH && echo "::set-output name=prettier-output::$(prettier --check --config ${{ inputs.config_path }} --ignore-path  ${{ inputs.ignore_path }} --no-error-on-unmatched-pattern  ${{ inputs.file_pattern }})"
+
+branding:
+  icon: 'search'
+  color: 'gray-dark'
