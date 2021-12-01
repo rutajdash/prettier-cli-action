@@ -18,6 +18,10 @@ inputs:
     description: 'The version of prettier to install'
     required: false
     default: 'latest'
+  fail_on_error:
+    description: 'Whether the script should fail when linting errors are found'
+    required: false
+    default: true
 
 outputs:
   prettier_output:
@@ -36,6 +40,12 @@ runs:
       id: prettier-run
       shell: bash
       run: echo "::set-output name=prettier-output::$(prettier --list-different --config ${{ inputs.config_path }} --ignore-path ${{ inputs.ignore_path }} --no-error-on-unmatched-pattern ${{ inputs.file_pattern }})"
+
+    - name: Fail On Error
+      id: fail-on-error
+      if: steps.prettier-run.outputs.prettier-output != 0 && steps.prettier-run.outputs.prettier-output != '' && inputs.fail_on_error
+      shell: bash
+      run: exit 1
 
 branding:
   icon: 'search'
