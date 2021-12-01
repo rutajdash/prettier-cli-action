@@ -55,7 +55,7 @@ further defined and clarified by project maintainers.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported by contacting the project maintainer on Twitter (@rutajdash06) or Discord (RDJ#6034). All
+reported by contacting the project maintainer on Twitter [(@rutajdash06)](https://www.twitter.com/rutajdash06) or Discord [(RDJ#6034)](https://discordapp.com/channels/@me/722740308575780965). All
 complaints will be reviewed and investigated and will result in a response that
 is deemed necessary and appropriate to the circumstances. The project team is
 obligated to maintain confidentiality with regard to the reporter of an incident.
